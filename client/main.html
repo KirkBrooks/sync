@@ -1,0 +1,84 @@
+
+<head>
+  <title>Sync</title>
+</head>
+
+<body>
+	<header>
+		<h1>Sync</h1>
+	</header>
+
+	<div  class='container'>
+	<div class="row">{{> loginButtons}}</div>
+	{{> myMaterials}}
+
+	<div class='col-md-12'> 
+		{{> materials}}
+
+	</div>
+	</div>
+
+</body>
+
+
+<template name="materials">
+	<div class='row'>
+		<h4>Materials for sale</h4>
+	</div>
+
+	{{#each item}}
+		{{> offer}}
+	{{/each}}	
+
+
+</template>
+
+<template name="offer">
+	<div class='row'>
+		{{#if currentUser}}
+		<div class="col-md-1"><button class='buyBtn btn btn-default btn-sm'>Buy</button></div>
+		{{/if}}
+		<div class="col-md-2"><strong>{{qty}} @ ${{price}}</strong></div>
+		
+	</div>
+</template>
+
+<!--  My RMUs  -->
+
+<template name="myMaterials">
+	{{#if currentUser}}
+		<div class='row'>
+			<h4>My Materials</h4>
+		</div>
+
+		<div class='row'>
+			<p>Cash: {{myCash}}</p>
+		</div>
+
+		<div class='row'>
+		{{#if rmus}}
+			<p>Qty = {{rmus.qty}}, value = {{rmus.value}},  Avg Cost = {{rmus.avgPrice}} each</p>
+			{{#if rmus.qty}}
+				{{> sellRMU}}
+			{{/if}}
+		{{else}}
+			<p>You don't have any materials yet.</p>
+		{{/if}}
+		</div>
+	{{/if}}
+</template>
+
+
+<template name="sellRMU">
+	<div class='row'>
+	<h5>Sell some RMUs:</h5>
+		<form>
+			Quantity: <input type="number" name="qty" >
+			Price: <input type="number" name="price" >
+			<button type="submit" class="sell-rmu">Sell</button>
+		</form>
+	</div>	
+</template>	
+
+
+

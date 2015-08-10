@@ -1,0 +1,6 @@
+/*  methods.js  */
+
+Meteor.methods({
+	
+});
+
